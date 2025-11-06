@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+    .blockParameters {
+        height: 30px;
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+    }
+    .flexBlock {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .divModules {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        border: 1px solid black;
+    }
+    .divModule {
+        width: 97%;
+        height: 20px;
+        margin: 4px;
+    }
+</style>
+</head>
+<body>
+<script src="arrays-1.js"></script>
+<script>
+
+    const coursesArray = window.coursesArray;
+    for (const course of coursesArray) {
+        const divMain = document.createElement("div");
+        const divTitle = document.createElement('div');
+        const divMonthDuration = document.createElement("div");
+        const divHourDuration = document.createElement("div");
+        const divHourDurationTime = document.createElement("div");
+        const divModules = document.createElement("div");
+
+        divMain.style.border = '1px solid red';
+        divMain.style.margin = '10px';
+        divMain.style.width = '95vw';
+        divMain.classList.add('flexBlock');
+
+        divTitle.classList.add('course');
+        divTitle.style.width = '95%'
+        divTitle.innerText = `title: '${course.title}'`;
+        divTitle.classList.add('blockParameters');
+        divTitle.style.marginTop = '20px';
+
+        divMonthDuration.innerText = `monthDuration: ${course.monthDuration}`;
+        divMonthDuration.style.width = '95%'
+        divMonthDuration.classList.add('blockParameters');
+
+        divHourDuration.innerText = `hourDuration:`;
+        divHourDuration.style.width = '25%'
+        divHourDuration.classList.add('blockParameters');
+
+        divHourDurationTime.innerText = `${course.hourDuration}`;
+        divHourDurationTime.style.width = '68%'
+        divHourDurationTime.classList.add('blockParameters');
+
+        divModules.style.width = '95%';
+        divModules.classList.add('divModules');
+
+        divModules.style.marginBottom = '20px';
+        for (let module of course.modules) {
+            const divModule = document.createElement("div");
+            divModule.innerText = module;
+            divModule.classList.add('blockParameters');
+            divModule.classList.add('divModule');
+            divModules.append(divModule);
+        }
+        divMain.append(divTitle, divMonthDuration, divHourDuration, divHourDurationTime, divModules);
+        document.body.appendChild(divMain);
+    }
+</script>
+</body>
+</html>
